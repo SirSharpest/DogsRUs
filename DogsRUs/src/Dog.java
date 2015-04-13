@@ -119,11 +119,18 @@ public class Dog {
 
 	/**
 	 * A basic implementation to just return all the data in string form
+	 * Using a string builder object
 	 */
 	public String toString() {
-		return "Dog name:" + dogName + "Likes Bones?:" + likesBones
-				+ "Original Owner:" + originalOwners + "Favfood:" + favFood
-				+ "FoodPerDay:" + foodPerDay;
+		
+		StringBuilder results = new StringBuilder();
+		results.append("Dog name: " + dogName + "\n");
+		results.append("Likes bones?: " + likesBones + "\n");
+		results.append("Original Owner(s): " + originalOwners + "\n");
+		results.append("Favourite food: " + favFood + "\n"); 
+		results.append("Feedings per day: " + foodPerDay + "\n");
+
+		return results.toString();
 	}
 
 }

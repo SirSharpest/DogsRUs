@@ -1,4 +1,4 @@
-DogsRUs
+AnimalsRUs
 20
 2
 Rover

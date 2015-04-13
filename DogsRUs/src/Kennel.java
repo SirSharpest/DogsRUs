@@ -130,13 +130,16 @@ public class Kennel {
 
 	/**
 	 * @return String showing all the information in the kennel
+	 * Now makes use of the string builder object 
 	 */
 	public String toString() {
-		String results = "Data in Kennel " + name + " is:";
+		
+		StringBuilder results = new StringBuilder();
+		results.append("Data in Kennel " + name + " is:").append('\n');
 		for (Dog d : dogs) {
-			results = results + d.toString() + "\n";
+			results.append(d).append('\n');
 		}
-		return results;
+		return results.toString();
 	}
 
 	/**
@@ -154,17 +157,43 @@ public class Kennel {
 	 * @return An array of dogs of the correct size. If no dogs like bones then returns an empty array (size 0)
 	 */
 	public Dog[] obtainDogsWhoLikeBones() {
-		// ENTER CODE HERE
-		Dog[] result = null;
-
-		// Create a copy of the ArrayList and return as an array of the correct
-		// size
+		
+		/*
+		 * slight problem that has occured to me, 
+		 * what if there is no dogs who like bones 
+		 * 
+		 * Also the memory wastage here of creating too large an array
+		 */
+		
+		int numDogsWhoLikeBones = 0; 
+		
+		for (int i = 0; i < dogs.size(); i++) {
+			if(dogs.get(i).getLikesBones() == true){
+				numDogsWhoLikeBones++; 
+			}
+		}
+		
+		Dog[] result = new Dog[numDogsWhoLikeBones];
+		
+ 		
+		//signifies the current space in the array to write to
+		int pos = 0; 
+		
+		for (int i = 0; i < result.length; i++) {
+			if(dogs.get(i).getLikesBones() == true){
+				result[pos] = dogs.get(i); 
+				pos++; 
+			}
+		}
+		
 		return result;
 	}
 
 	public Dog search(String name) {
 		// ENTER CODE HERE
 		Dog result = null;
+		
+		
 
 		return result;
 	}

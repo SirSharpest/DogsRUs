@@ -18,6 +18,7 @@ public class KennelDemo {
 	private String filename; // holds the name of the file
 	private Kennel kennel; // holds the kennel
 	private Scanner scan; // so we can read from keyboard
+	
 
 	/*
 	 * Notice how we can make this private, since we only call from main which
@@ -27,7 +28,6 @@ public class KennelDemo {
 		scan = new Scanner(System.in);
 		System.out.print("Please enter the filename of kennel information: ");
 		filename = scan.next();
-		
 		kennel = new Kennel();
 	}
 
@@ -127,7 +127,7 @@ public class KennelDemo {
 		Dog[] dogsWithBones = kennel.obtainDogsWhoLikeBones();
 		System.out.println("Dogs with bones: ");
 		for (Dog d: dogsWithBones){
-			System.out.println(d);
+			System.out.println(d.toString());
 		}	
 	}
 
