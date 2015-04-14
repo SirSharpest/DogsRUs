@@ -19,7 +19,7 @@ public class KennelDemo {
 	private Kennel kennel; // holds the kennel
 	private Scanner scan; // so we can read from keyboard
 	
-
+	
 	/*
 	 * Notice how we can make this private, since we only call from main which
 	 * is in this class. We don't want this class to be used by any other class.
@@ -68,6 +68,7 @@ public class KennelDemo {
 				
 				Dog dog = new Dog(dogName, owners, likesBones, favFood, feedsPerDay);
 				kennel.addDog(dog);
+				
 			}
 			
 		} catch (FileNotFoundException e) {
@@ -84,6 +85,8 @@ public class KennelDemo {
 	 */
 	private void runMenu() {
 		String response;
+		
+		
 		do {
 			printMenu();
 			System.out.println("What would you like to do:");

@@ -5,11 +5,10 @@ import java.util.ArrayList;
  * @author Chris Loftus
  * @version 1.0 (16th March 2015)
  */
-public class Dog {
+public class Dog extends Animal {
 
 	private ArrayList<Owner> originalOwners;
 	private boolean likesBones;
-	private String dogName;
 	private String favFood;
 	private int foodPerDay;
 
@@ -23,7 +22,7 @@ public class Dog {
 	 */
 	public Dog(String name, ArrayList<Owner> owners, boolean likeBones, String food,
 			int mealsPerDay) {
-		dogName = name;
+		setName(name);
 		originalOwners = new ArrayList<Owner>();
 		
 		// We make a true copy of the owners ArrayList to make sure that we
@@ -38,13 +37,6 @@ public class Dog {
 		this.foodPerDay = mealsPerDay;
 	}
 
-	public String getName() {
-		return dogName;
-	}
-
-	public void setName(String newName) {
-		dogName = newName;
-	}
 	
 	/**
 	 * Returns a copy of the original owners
@@ -109,10 +101,10 @@ public class Dog {
 		if (getClass() != obj.getClass())
 			return false;
 		Dog other = (Dog) obj;
-		if (dogName == null) {
-			if (other.dogName != null)
+		if (getName() == null) {
+			if (other.getName() != null)
 				return false;
-		} else if (!dogName.equals(other.dogName))
+		} else if (!getName().equals(other.getName()))
 			return false;
 		return true;
 	}
@@ -124,7 +116,7 @@ public class Dog {
 	public String toString() {
 		
 		StringBuilder results = new StringBuilder();
-		results.append("Dog name: " + dogName + "\n");
+		results.append("Dog name: " + getName() + "\n");
 		results.append("Likes bones?: " + likesBones + "\n");
 		results.append("Original Owner(s): " + originalOwners + "\n");
 		results.append("Favourite food: " + favFood + "\n"); 
