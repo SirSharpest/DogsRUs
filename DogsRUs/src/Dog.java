@@ -7,10 +7,9 @@ import java.util.ArrayList;
  */
 public class Dog extends Animal {
 
-	private ArrayList<Owner> originalOwners;
+	
 	private boolean likesBones;
-	private String favFood;
-	private int foodPerDay;
+
 
 	/**
 	 * Constructor for the dog
@@ -23,30 +22,21 @@ public class Dog extends Animal {
 	public Dog(String name, ArrayList<Owner> owners, boolean likeBones, String food,
 			int mealsPerDay) {
 		setName(name);
-		originalOwners = new ArrayList<Owner>();
+		setOriginalOwners(new ArrayList<Owner>());
 		
 		// We make a true copy of the owners ArrayList to make sure that we
 		// don't break encapsulation: i.e. don't share object references with
 		// other code
 		for(Owner o: owners){
 			Owner copy = new Owner(o.getName(), o.getPhone());
-			originalOwners.add(copy);
+			getOriginalOwners().add(copy);
 		}
 		this.likesBones = likeBones;
-		this.favFood = food;
-		this.foodPerDay = mealsPerDay;
+		setFavFood(food); 
+		setFoodPerDay(mealsPerDay);
 	}
 
 	
-	/**
-	 * Returns a copy of the original owners
-	 * @return A copy of the original owners as an array
-	 */
-	public Owner[] getOriginalOwners(){
-		Owner[] result = new Owner[originalOwners.size()];
-		result = originalOwners.toArray(result);
-		return result;
-	}
 
 	/**
 	 * Does the dog like bones?
@@ -55,38 +45,8 @@ public class Dog extends Animal {
 	public boolean getLikesBones() {
 		return likesBones;
 	}
-	/**
-	 * How many times a day to feed the dog
-	 * @param feeds The number of feeds per day
-	 */
-	public void setFeedsPerDay(int feeds){
-		foodPerDay = feeds;
-	}
-	
-	/**
-	 * The number of feeds per day the dog is fed
-	 * @return The number of feeds per day
-	 */
-	public int getFeedsPerDay(){
-		return foodPerDay;
-	}
-	
-	/**
-	 * What's his favourite food?
-	 * @param food The food he likes
-	 */
-	public void setFavouriteFood(String food){
-		favFood = food;
-	}
-	
-	/**
-	 * The food the dog likes to eat
-	 * @return The food 
-	 */
-	public String getFavouriteFood(){
-		return favFood;
-	}
 
+	
 	/**
 	 * Note that this only compares equality based on a
 	 * dog's name.
@@ -118,9 +78,8 @@ public class Dog extends Animal {
 		StringBuilder results = new StringBuilder();
 		results.append("Dog name: " + getName() + "\n");
 		results.append("Likes bones?: " + likesBones + "\n");
-		results.append("Original Owner(s): " + originalOwners + "\n");
-		results.append("Favourite food: " + favFood + "\n"); 
-		results.append("Feedings per day: " + foodPerDay + "\n");
+		results.append("Original Owner(s): " + getOriginalOwners() + "\n");
+		results.append("Favourite food: " + getFavFood() + "\n"); 
 
 		return results.toString();
 	}

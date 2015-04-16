@@ -1,6 +1,6 @@
 AnimalsRUs
 20
-2
+3
 Rover
 2
 Chris Loftus
@@ -17,3 +17,10 @@ James Bond
 false
 1
 Gold fingers
+Scooby
+1
+Nathan
+02891343
+true
+6
+Soybeans

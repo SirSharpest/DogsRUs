@@ -155,15 +155,15 @@ public class KennelDemo {
 			Dog[] dogs = kennel.obtainAllDogs();
 			for (Dog d: dogs){
 				outfile.println(d.getName());
-				Owner[] owners = d.getOriginalOwners();
-				outfile.println(owners.length);
+				ArrayList<Owner> owners = d.getOriginalOwners();
+				outfile.println(owners.size());
 				for(Owner o: owners){
 					outfile.println(o.getName());
 					outfile.println(o.getPhone());
 				}
 				outfile.println(d.getLikesBones());
-				outfile.println(d.getFeedsPerDay());
-				outfile.println(d.getFavouriteFood());
+				outfile.println(d.getFoodPerDay());
+				outfile.println(d.getFavFood());
 			}
 		} catch (IOException e) {
 			System.err.println("Problem when trying to write to file: " + filename);
