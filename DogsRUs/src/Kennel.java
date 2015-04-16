@@ -150,6 +150,7 @@ public class Kennel {
 		Dog[] result = new Dog[dogs.size()];
 		result = dogs.toArray(result);
 		return result;
+	
 	}
 
 	/**
@@ -159,10 +160,10 @@ public class Kennel {
 	public Dog[] obtainDogsWhoLikeBones() {
 		
 		/*
-		 * slight problem that has occured to me, 
+		 * slight problem that has occurred to me, 
 		 * what if there is no dogs who like bones 
 		 * 
-		 * Also the memory wastage here of creating too large an array
+		 * Also the memory waste here of creating too large an array
 		 */
 		
 		int numDogsWhoLikeBones = 0; 
@@ -179,7 +180,7 @@ public class Kennel {
 		//signifies the current space in the array to write to
 		int pos = 0; 
 		
-		for (int i = 0; i < result.length; i++) {
+		for (int i = 0; i < dogs.size(); i++) {
 			if(dogs.get(i).getLikesBones() == true){
 				result[pos] = dogs.get(i); 
 				pos++; 
@@ -189,12 +190,23 @@ public class Kennel {
 		return result;
 	}
 
-	public Dog search(String name) {
-		// ENTER CODE HERE
-		Dog result = null;
+	/**
+	 * 
+	 * @param name the name to find 
+	 * @return results from the search
+	 * this will find any and all matches to the characters entered 
+	 * extra bit of flair here as it can return multiple matches 
+	 */
+	public ArrayList<Dog> search(String name) {
 		
+		ArrayList<Dog> result = new ArrayList<Dog>(0); 
 		
-
+		//search for dogs with names matching the char sequence
+		for (int i = 0; i < dogs.size(); i++) {
+			if(dogs.get(i).getName().toLowerCase().contains(name.toLowerCase())){
+				result.add(dogs.get(i));
+			}	
+		}	
 		return result;
 	}
 

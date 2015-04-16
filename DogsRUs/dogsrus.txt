@@ -2,11 +2,9 @@ AnimalsRUs
 20
 3
 Rover
-2
+1
 Chris Loftus
 1234
-Pete Hoskins
-2222
 true
 2
 biscuits

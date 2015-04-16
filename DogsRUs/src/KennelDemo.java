@@ -181,9 +181,11 @@ public class KennelDemo {
 	private void searchForDog() {
 		System.out.println("which dog do you want to search for");
 		String name = scan.nextLine();
-		Dog dog = kennel.search(name);
-		if (dog != null){
-			System.out.println(dog.toString());
+		ArrayList<Dog> dog = kennel.search(name);
+		if (dog.size() != 0){
+			for (int i = 0; i < dog.size(); i++){
+				System.out.println(dog.get(i).toString());
+			}
 		} else {
 			System.out.println("Could not find dog: " + name);
 		}
