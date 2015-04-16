@@ -57,5 +57,33 @@ public class Animal {
 	public void setFoodPerDay(int foodPerDay) {
 		this.foodPerDay = foodPerDay;
 	}
-	
+
+
+
+
+	/**
+	 * Note that this only compares equality based on a
+	 * animal's name.
+	 * @param The other dog to compare against.
+	 */
+	@Override
+	public boolean equals(Object obj) { 
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Animal other = (Animal) obj;
+		if (getName() == null) {
+			if (other.getName() != null)
+				return false;
+		} else if (!getName().equals(other.getName()))
+			return false;
+		return true;
+	}
+
+
+
+
 }

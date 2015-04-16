@@ -175,13 +175,13 @@ public class KennelDemo {
 		System.out.println("which dog do you want to remove");
 		String dogtoberemoved;
 		dogtoberemoved = scan.nextLine();
-		kennel.removeDog(dogtoberemoved);
+		kennel.removeAnimal(dogtoberemoved);
 	}
 
 	private void searchForDog() {
 		System.out.println("which dog do you want to search for");
 		String name = scan.nextLine();
-		ArrayList<Dog> dog = kennel.search(name);
+		ArrayList<Dog> dog = kennel.searchDogs(name);
 		if (dog.size() != 0){
 			for (int i = 0; i < dog.size(); i++){
 				System.out.println(dog.get(i).toString());

@@ -10,30 +10,31 @@ import java.util.ArrayList;
  */
 public class Kennel {
 	private String name;
-	private ArrayList<Dog> dogs;
+	private ArrayList<Animal> animals;
 	private int nextFreeLocation;
 	private int capacity;
 
 	/**
 	 * Creates a kennel with a default size 20
 	 * 
-	 * @param maxNoDogs
+	 * @param maxNoAnimals
 	 *            The capacity of the kennel
 	 */
 	public Kennel(){
 		this(20);
+		
 	}
 	
 	/**
 	 * Create a kennel
 	 * 
-	 * @param maxNoDogs
+	 * @param maxNoAnimals
 	 *            The capacity of the kennel
 	 */
-	public Kennel(int maxNoDogs) {
+	public Kennel(int maxNoAnimals) {
 		nextFreeLocation = 0; // no Dogs in collection at start
-		capacity = maxNoDogs;
-		dogs = new ArrayList<Dog>(capacity); // set up default. This can
+		capacity = maxNoAnimals;
+		animals = new ArrayList<Animal>(capacity); // set up default. This can
 												// actually be exceeded
 												// when using ArrayList but we
 												// won't allow that
@@ -52,10 +53,12 @@ public class Kennel {
 	
 	/**
 	 * Set the size of the kennel
-	 * @param capacity The max dogs we can house
+	 * @param capacity The max animals we can house
 	 */
 	public void setCapacity(int capacity){
-		// This should really check to see if we already have dogs
+		//TODO:Suff here read
+		
+		// This should really check to see if we already have animals
 		// in the kennel and reducing the capacity would lead to evictions!
 		this.capacity = capacity;
 	}
@@ -82,9 +85,33 @@ public class Kennel {
 	 * This method returns the number of dogs in a kennel
 	 * 
 	 * @return int Current number of dogs in the kennel
+	 * 
 	 */
-	public int getNumOfDogs() {
-		return nextFreeLocation;
+	public int getNumOfDogs() {	
+		int numDogs = 0; 	
+		for (int i = 0; i < animals.size(); i++) {	
+			if(isDog(animals.get(i))){
+				numDogs++; 
+			}	
+		}
+		return numDogs;
+	}
+	
+	/**
+	 * This method returns the number of cats in a kennel
+	 * 
+	 * @return int Current number of cats in the kennel
+	 * 
+	 * 
+	 */
+	public int getNumOfCats() {	
+		int numCats = 0; 	
+		for (int i = 0; i < animals.size(); i++) {	
+			if(!isDog(animals.get(i))){
+				numCats++; 
+			}	
+		}
+		return numCats;
 	}
 
 	/**
@@ -92,6 +119,8 @@ public class Kennel {
 	 * 
 	 * @param theDog
 	 *            A new dog to home
+	 *            
+	 *  TODO::ALTER THIS FOR CATS
 	 */
 	public void addDog(Dog theDog) {
 		if (nextFreeLocation >= capacity) {
@@ -100,7 +129,7 @@ public class Kennel {
 		}
 		// we add in the position indexed by nextFreeLocation
 		// This starts at zero
-		dogs.add(theDog);
+		animals.add(theDog);
 
 		// now increment index ready for next one
 		nextFreeLocation = nextFreeLocation + 1;
@@ -109,19 +138,20 @@ public class Kennel {
 	/**
 	 * Enables a user to delete a Dog from the Kennel.
 	 * 
-	 * @param theDog
+	 * @param theAnimal
 	 *            The dog to remove
+	 *            TODO:: Make more magic happen
 	 */
-	public void removeDog(String who) {
-		Dog which = null;
+	public void removeAnimal(String who) {
+		Animal which = null;
 		// Search for the dog by name
-		for (Dog d : dogs) {
+		for (Animal d : animals) {
 			if (who.equals(d.getName())) {
 				which = d;
 			}
 		}
 		if (which != null) {
-			dogs.remove(which); // Requires that Dog has an equals method
+			animals.remove(which); // Requires that Animal has an equals method
 			System.out.println("removed " + who);
 			nextFreeLocation = nextFreeLocation - 1;
 		} else
@@ -136,7 +166,7 @@ public class Kennel {
 		
 		StringBuilder results = new StringBuilder();
 		results.append("Data in Kennel " + name + " is:").append('\n');
-		for (Dog d : dogs) {
+		for (Animal d : animals) {
 			results.append(d).append('\n');
 		}
 		return results.toString();
@@ -147,8 +177,17 @@ public class Kennel {
 	 * @return An array of the correct size
 	 */
 	public Dog[] obtainAllDogs() {
-		Dog[] result = new Dog[dogs.size()];
-		result = dogs.toArray(result);
+		Dog[] result = new Dog[getNumOfDogs()];
+
+		int pos = 0; 
+		
+		for (int i = 0; i < animals.size(); i++) {
+			if(isDog(animals.get(i))){
+				result[pos] = (Dog) animals.get(i);
+				pos++; 
+			}
+		}
+		
 		return result;
 	
 	}
@@ -167,26 +206,84 @@ public class Kennel {
 		 */
 		
 		int numDogsWhoLikeBones = 0; 
-		
-		for (int i = 0; i < dogs.size(); i++) {
-			if(dogs.get(i).getLikesBones() == true){
-				numDogsWhoLikeBones++; 
+		for (int i = 0; i < animals.size(); i++) {
+			
+			if(isDog(animals.get(i))){
+				if(((Dog)animals.get(i)).getLikesBones() == true){
+					numDogsWhoLikeBones++; 
+				}
 			}
-		}
-		
+
+		}	
 		Dog[] result = new Dog[numDogsWhoLikeBones];
 		
- 		
 		//signifies the current space in the array to write to
 		int pos = 0; 
 		
-		for (int i = 0; i < dogs.size(); i++) {
-			if(dogs.get(i).getLikesBones() == true){
-				result[pos] = dogs.get(i); 
+		for (int i = 0; i < animals.size(); i++) {
+			if(((Dog)animals.get(i)).getLikesBones() == true){
+				result[pos] = (Dog) animals.get(i); 
 				pos++; 
 			}
 		}
 		
+		return result;
+	}
+	
+	public boolean isDog(Animal animal){
+		
+		if(animal instanceof Dog){
+			return true; 
+		}
+		return false;
+		
+	}
+
+	/**
+	 * 
+	 * @param name the name to find 
+	 * @return results from the search
+	 * this will find any and all matches to the characters entered 
+	 * extra bit of flair here as it can return multiple matches 
+	 */
+	public ArrayList<Dog> searchDogs(String name) {
+		
+		ArrayList<Dog> result = new ArrayList<Dog>(0); 
+		
+		//search for dogs with names matching the char sequence
+		for (int i = 0; i < animals.size(); i++) {
+			
+			if(isDog(animals.get(i))){
+				if(animals.get(i).getName().toLowerCase().contains(name.toLowerCase())){
+					result.add((Dog) animals.get(i));
+				}	
+			}
+
+		}	
+		return result;
+	}
+	
+	/**
+	 * 
+	 * @param name the name to find 
+	 * @return results from the search
+	 * this will find any and all matches to the characters entered 
+	 * extra bit of flair here as it can return multiple matches 
+	 */
+	public ArrayList<Cat> searchCats(String name) {
+		
+		ArrayList<Cat> result = new ArrayList<Cat>(0); 
+		
+		//search for dogs with names matching the char sequence
+		for (int i = 0; i < animals.size(); i++) {
+			
+			if(!isDog(animals.get(i))){
+				if(animals.get(i).getName().toLowerCase().contains(name.toLowerCase())){
+					result.add((Cat) animals.get(i));
+				}	
+			}
+
+		}	
 		return result;
 	}
 
@@ -197,18 +294,20 @@ public class Kennel {
 	 * this will find any and all matches to the characters entered 
 	 * extra bit of flair here as it can return multiple matches 
 	 */
-	public ArrayList<Dog> search(String name) {
+	public ArrayList<Animal> searchAll(String name) {
 		
-		ArrayList<Dog> result = new ArrayList<Dog>(0); 
+		ArrayList<Animal> result = new ArrayList<Animal>(0); 
 		
 		//search for dogs with names matching the char sequence
-		for (int i = 0; i < dogs.size(); i++) {
-			if(dogs.get(i).getName().toLowerCase().contains(name.toLowerCase())){
-				result.add(dogs.get(i));
-			}	
+		for (int i = 0; i < animals.size(); i++) {
+			
+			if(isDog(animals.get(i))){
+				if(animals.get(i).getName().toLowerCase().contains(name.toLowerCase())){
+					result.add(animals.get(i));
+				}	
+			}
 		}	
 		return result;
 	}
-
 	
 }
