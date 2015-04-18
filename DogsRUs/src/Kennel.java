@@ -54,13 +54,20 @@ public class Kennel {
 	/**
 	 * Set the size of the kennel
 	 * @param capacity The max animals we can house
+	 * this function will not check that the new size is reasonable 
+	 * and will not be less than current number of animals
 	 */
 	public void setCapacity(int capacity){
-		//TODO:Suff here read
 		
-		// This should really check to see if we already have animals
-		// in the kennel and reducing the capacity would lead to evictions!
-		this.capacity = capacity;
+		if(this.capacity < capacity){
+			System.out.println("Sorry but that number is less than what we already contain");
+			System.out.println("No change has been made!");
+		}
+		else{
+			System.out.println("Capacity has been changed");
+			this.capacity = capacity;
+		}
+
 	}
 	
 	/**
@@ -113,6 +120,15 @@ public class Kennel {
 		}
 		return numCats;
 	}
+	
+	/**
+	 * This method returns the total number of animals in the kennel
+	 */
+	public int getNumOfAnimals(){
+		
+		return getNumOfDogs() + getNumOfCats(); 
+		
+	}
 
 	/**
 	 * Enables a user to add a Dog to the Kennel
@@ -120,11 +136,10 @@ public class Kennel {
 	 * @param theDog
 	 *            A new dog to home
 	 *            
-	 *  TODO::ALTER THIS FOR CATS
 	 */
 	public void addDog(Dog theDog) {
 		if (nextFreeLocation >= capacity) {
-			System.out.println("Sorry kennel is full - cannot add team");
+			System.out.println("Sorry kennel is full - cannot add");
 			return;
 		}
 		// we add in the position indexed by nextFreeLocation
@@ -134,20 +149,43 @@ public class Kennel {
 		// now increment index ready for next one
 		nextFreeLocation = nextFreeLocation + 1;
 	}
+	
+	/**
+	 * Enables a user to add a Cat to the Kennel
+	 * 
+	 * @param theCat
+	 *            A new cat to home
+	 *            
+	 *  
+	 */
+	public void addCat(Cat theCat) {
+		if (nextFreeLocation >= capacity) {
+			System.out.println("Sorry kennel is full - cannot add");
+			return;
+		}
+		// we add in the position indexed by nextFreeLocation
+		// This starts at zero
+		animals.add(theCat);
+
+		// now increment index ready for next one
+		nextFreeLocation = nextFreeLocation + 1;
+	}
+	
+	
+	
 
 	/**
 	 * Enables a user to delete a Dog from the Kennel.
 	 * 
 	 * @param theAnimal
 	 *            The dog to remove
-	 *            TODO:: Make more magic happen
 	 */
-	public void removeAnimal(String who) {
-		Animal which = null;
-		// Search for the dog by name
-		for (Animal d : animals) {
-			if (who.equals(d.getName())) {
-				which = d;
+	public void removeDog(String who) {
+		Dog which = null;
+		// Search for the animal by name
+		for (Animal a : animals) {
+			if (who.equals(a.getName()) && isDog(a)) {
+				which = (Dog) a;
 			}
 		}
 		if (which != null) {
@@ -157,6 +195,31 @@ public class Kennel {
 		} else
 			System.err.println("cannot remove - not in kennel");
 	}
+	
+	/**
+	 * Enables a user to delete a Cat from the Kennel.
+	 * 
+	 * @param theAnimal
+	 *            The cat to remove
+	 */
+	public void removeCat(String who) {
+		Cat which = null;
+		// Search for the animal by name
+		for (Animal a : animals) {
+			if (who.equals(a.getName()) && !isDog(a)) {
+				which = (Cat) a;
+			}
+		}
+		if (which != null) {
+			animals.remove(which); // Requires that Animal has an equals method
+			System.out.println("removed " + who);
+			nextFreeLocation = nextFreeLocation - 1;
+		} else
+			System.err.println("cannot remove - not in kennel");
+	}
+	
+	
+	
 
 	/**
 	 * @return String showing all the information in the kennel
@@ -184,6 +247,26 @@ public class Kennel {
 		for (int i = 0; i < animals.size(); i++) {
 			if(isDog(animals.get(i))){
 				result[pos] = (Dog) animals.get(i);
+				pos++; 
+			}
+		}
+		
+		return result;
+	
+	}
+	
+	/**
+	 * Returns an array of the dogs in the kennels
+	 * @return An array of the correct size
+	 */
+	public Cat[] obtainAllCats() {
+		Cat[] result = new Cat[getNumOfCats()];
+
+		int pos = 0; 
+		
+		for (int i = 0; i < animals.size(); i++) {
+			if(!isDog(animals.get(i))){
+				result[pos] = (Cat) animals.get(i);
 				pos++; 
 			}
 		}
@@ -221,14 +304,52 @@ public class Kennel {
 		int pos = 0; 
 		
 		for (int i = 0; i < animals.size(); i++) {
-			if(((Dog)animals.get(i)).getLikesBones() == true){
-				result[pos] = (Dog) animals.get(i); 
+			
+			if(isDog(animals.get(i))){
+				if(((Dog)animals.get(i)).getLikesBones() == true){
+					result[pos] = (Dog) animals.get(i); 
+					pos++; 
+				}
+			}
+
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Only returns those dogs who like bones
+	 * @return An array of dogs of the correct size. If no dogs like bones then returns an empty array (size 0)
+	 */
+	public Cat[] obtainCatsWhoCanShareRun() {
+		
+		
+		int numCatsWhoCanShareRun = 0; 
+		for (int i = 0; i < animals.size(); i++) {
+			
+			if(!isDog(animals.get(i))){
+				if(((Cat)animals.get(i)).isCanShareRun() == true){
+					numCatsWhoCanShareRun++; 
+				}
+			}
+
+		}	
+		Cat[] result = new Cat[numCatsWhoCanShareRun];
+		
+		//signifies the current space in the array to write to
+		int pos = 0; 
+		
+		for (int i = 0; i < animals.size(); i++) {
+			if(((Cat)animals.get(i)).isCanShareRun() == true){
+				result[pos] = (Cat) animals.get(i); 
 				pos++; 
 			}
 		}
 		
 		return result;
 	}
+	
+	
 	
 	public boolean isDog(Animal animal){
 		

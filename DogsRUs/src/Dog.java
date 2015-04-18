@@ -9,6 +9,7 @@ public class Dog extends Animal {
 
 	
 	private boolean likesBones;
+	private boolean needsWalked;
 
 
 	/**
@@ -19,7 +20,7 @@ public class Dog extends Animal {
 	 * @param food The kind of food it eats
 	 * @param mealsPerDay Number of feeds per day 
 	 */
-	public Dog(String name, ArrayList<Owner> owners, boolean likeBones, String food,
+	public Dog(String name, ArrayList<Owner> owners, boolean likeBones, boolean needWalked, String food,
 			int mealsPerDay) {
 		setName(name);
 		setOriginalOwners(new ArrayList<Owner>());
@@ -32,6 +33,7 @@ public class Dog extends Animal {
 			getOriginalOwners().add(copy);
 		}
 		this.likesBones = likeBones;
+		this.needsWalked = needWalked; 
 		setFavFood(food); 
 		setFoodPerDay(mealsPerDay);
 	}
@@ -60,8 +62,21 @@ public class Dog extends Animal {
 		results.append("Likes bones?: " + likesBones + "\n");
 		results.append("Original Owner(s): " + getOriginalOwners() + "\n");
 		results.append("Favourite food: " + getFavFood() + "\n"); 
+		results.append("Needs walked?" + isNeedWalked()+ "\n");
 
 		return results.toString();
+	}
+
+
+
+	public boolean isNeedWalked() {
+		return needsWalked;
+	}
+
+
+
+	public void setNeedsWalked(boolean needsWalked) {
+		this.needsWalked = needsWalked;
 	}
 
 }

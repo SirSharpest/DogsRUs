@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 
-public class Animal {
+public abstract class Animal {
 
 	private String petName;
 	private ArrayList<Owner> originalOwners;

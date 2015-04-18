@@ -47,7 +47,20 @@ public class Cat extends Animal{
 		this.canShareRun = canShareRun;
 	}
 
+	/**
+	 * A basic implementation to just return all the data in string form
+	 * Using a string builder object
+	 */
+	public String toString() {
+		
+		StringBuilder results = new StringBuilder();
+		results.append("Cat name: " + getName() + "\n");
+		results.append("Can share run?: " + canShareRun + "\n");
+		results.append("Original Owner(s): " + getOriginalOwners() + "\n");
+		results.append("Favourite food: " + getFavFood() + "\n"); 
 
+		return results.toString();
+	}
 
 	
 
