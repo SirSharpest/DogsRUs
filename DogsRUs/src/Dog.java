@@ -79,4 +79,6 @@ public class Dog extends Animal {
 		this.needsWalked = needsWalked;
 	}
 
+	
+	
 }

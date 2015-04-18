@@ -66,19 +66,11 @@ public abstract class Animal {
 	 * animal's name.
 	 * @param The other dog to compare against.
 	 */
-	@Override
-	public boolean equals(Object obj) { 
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Animal other = (Animal) obj;
+	public boolean equals(Animal ani) { 
 		if (getName() == null) {
-			if (other.getName() != null)
+			if (ani.getName() != null)
 				return false;
-		} else if (!getName().equals(other.getName()))
+		} else if (!getName().equals(ani.getName()))
 			return false;
 		return true;
 	}
