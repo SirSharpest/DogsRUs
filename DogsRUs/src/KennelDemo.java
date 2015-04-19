@@ -305,6 +305,14 @@ public class KennelDemo {
 		System.out
 				.println("enter on separate lines: name, owner-name, owner-phone, likeBones?, needsWalked?, favourite food, number of times fed");
 		String name = scan.nextLine();
+		
+		//error checking that name contains atleast one letter
+		while(name.matches("[0-9]+")){
+			System.out.println("Sorry please use letters only in the name");
+			System.out.println("Try again");
+			name = scan.nextLine();
+		}
+		
 		ArrayList<Owner> owners = getOwners();
 		System.out.println("Does he like bones? (Y/N)");
 		String likeBones;
@@ -334,6 +342,15 @@ public class KennelDemo {
 		System.out
 				.println("enter on separate lines: name, owner-name, owner-phone, can share a run?, favourite food, number of times fed");
 		String name = scan.nextLine();
+		
+		
+		//error checking that there is atleast one letter in the name 
+		while(name.matches("[0-9]+")){
+			System.out.println("Sorry please use letters only in the name");
+			System.out.println("Try again");
+			name = scan.nextLine();
+		}
+		
 		ArrayList<Owner> owners = getOwners();
 		System.out.println("Can they share a run? (Y/N)");
 		String shareRun;
@@ -359,7 +376,22 @@ public class KennelDemo {
 			System.out
 					.println("Enter on separate lines: owner-name owner-phone");
 			String ownName = scan.nextLine();
+		
+			while(ownName.matches("[0-9]+")){
+				System.out.println("Sorry please use letters only in the name");
+				System.out.println("Try again");
+				ownName = scan.nextLine();
+			}
+			
 			String ownPhone = scan.nextLine();
+			
+			//ensuring that only numbers are entered for the users phone number 
+			while(!ownPhone.matches("[0-9]+")){
+				System.out.println("Sorry please use numbers only in the phone number");
+				System.out.println("Try again");
+				ownPhone = scan.nextLine();
+			}
+			
 			Owner own = new Owner(ownName, ownPhone);
 			owners.add(own);
 			System.out.println("Another owner (Y/N)?");

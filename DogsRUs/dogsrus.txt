@@ -1,6 +1,15 @@
 AnimalsRUs
 20
-5
+6
+dog
+Dinky
+1
+James Bond
+007007
+false
+true
+1
+Gold fingers
 dog
 Rover
 1
@@ -11,14 +20,14 @@ true
 2
 biscuits
 dog
-Dinky
+Ruffles
 1
-James Bond
-007007
-false
+Freddrick
+123123
+true
 true
 1
-Gold fingers
+Dog food
 dog
 Scooby
 1
