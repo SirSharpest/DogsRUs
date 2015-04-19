@@ -17,6 +17,7 @@ public class Dog extends Animal {
 	 * @param name The dog's name
 	 * @param owners A list of original owners: a copy is made
 	 * @param likeBones Does the dog like bones?
+	 * @param needWalked Does the dog need walked each day?
 	 * @param food The kind of food it eats
 	 * @param mealsPerDay Number of feeds per day 
 	 */

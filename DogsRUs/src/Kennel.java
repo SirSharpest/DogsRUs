@@ -60,7 +60,7 @@ public class Kennel {
 	 */
 	public void setCapacity(int capacity){
 		
-		if(this.capacity < capacity){
+		if(this.capacity > capacity){
 			System.out.println("Sorry but that number is less than what we already contain");
 			System.out.println("No change has been made!");
 		}
@@ -355,7 +355,12 @@ public class Kennel {
 	}
 	
 	
-	
+	/**
+	 * 
+	 * @param animal
+	 * @returns a value true if the type is of the Dog class
+	 * and false if it is anything else
+	 */
 	public boolean isDog(Animal animal){
 		
 		if(animal instanceof Dog){

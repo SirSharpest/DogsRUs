@@ -11,15 +11,6 @@ true
 1
 Gold fingers
 dog
-Rover
-1
-Chris Loftus
-1234
-true
-true
-2
-biscuits
-dog
 Ruffles
 1
 Freddrick
@@ -56,3 +47,11 @@ Klark
 false
 3
 fish
+cat
+Whiskers
+1
+Sam
+4234
+true
+1
+Biscuits
