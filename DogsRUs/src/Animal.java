@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 
-public abstract class Animal {
+public abstract class Animal implements Comparable<Animal> {
 
 	private String petName;
 	private ArrayList<Owner> originalOwners;
@@ -60,6 +60,17 @@ public abstract class Animal {
 
 
 
+	/**
+	 * 
+	 * @param other Animal to compare string to
+	 * @return
+	 */
+	public int compareTo(Animal other){
+		
+		return petName.compareTo(other.petName);
+		
+	}
+	
 
 	/**
 	 * Note that this only compares equality based on a

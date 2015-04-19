@@ -40,7 +40,7 @@ false
 3
 dog treats
 cat
-jazzles
+Jazzles
 1
 Klark
 341

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * 
@@ -229,6 +230,7 @@ public class Kennel {
 		
 		StringBuilder results = new StringBuilder();
 		results.append("Data in Kennel " + name + " is:").append('\n');
+		results.append('\n');
 		for (Animal d : animals) {
 			results.append(d).append('\n');
 		}
@@ -429,6 +431,16 @@ public class Kennel {
 			}
 		}	
 		return result;
+	}
+	
+	/**
+	 * sorts animals by their name in the 
+	 * array list
+	 */
+	public void sortKennel(){
+		
+		Collections.sort(animals);
+		
 	}
 	
 }

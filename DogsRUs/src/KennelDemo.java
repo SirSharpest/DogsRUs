@@ -13,6 +13,9 @@ import java.util.Scanner;
  * 
  * @author Lynda Thomas and Chris Loftus
  * @version 1.1 (16th March 2015)
+ * 
+ * TODO:: Error checking on everything!!
+ * 
  */
 public class KennelDemo {
 	private String filename; // holds the name of the file
@@ -164,6 +167,8 @@ public class KennelDemo {
 			case "10":
 				setKennelCapacity();
 				break;
+			case "11":
+				printAll();
 			case "Q":
 				break;
 			default:
@@ -182,6 +187,8 @@ public class KennelDemo {
 		kennel.setCapacity(max);
 	}
 
+
+	
 	/**
 	 * prints all dogs which like bones 
 	 */
@@ -204,10 +211,13 @@ public class KennelDemo {
 		}	
 	}
 
-	/*
+	/**
+	 * Sorts the animals then prints 
 	 * printAll() method runs from the main and prints status
 	 */
 	private void printAll() {
+		
+		kennel.sortKennel();
 		System.out.println(kennel);
 	}
 
@@ -369,6 +379,7 @@ public class KennelDemo {
 		System.out.println("8 -  remove a dog");
 		System.out.println("9 -  remove a cat" );
 		System.out.println("10 -  set kennel capacity");
+		System.out.println("11 - print all animals alphabetically");
 		System.out.println("q - Quit");
 	}
 
