@@ -63,11 +63,12 @@ public abstract class Animal implements Comparable<Animal> {
 	/**
 	 * 
 	 * @param other Animal to compare string to
+	 * should hopefully ignore the case of the string aswell 
 	 * @return
 	 */
 	public int compareTo(Animal other){
 		
-		return petName.compareTo(other.petName);
+		return petName.compareToIgnoreCase(other.petName);
 		
 	}
 	
