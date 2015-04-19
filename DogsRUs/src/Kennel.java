@@ -342,10 +342,13 @@ public class Kennel {
 		int pos = 0; 
 		
 		for (int i = 0; i < animals.size(); i++) {
-			if(((Cat)animals.get(i)).isCanShareRun() == true){
-				result[pos] = (Cat) animals.get(i); 
-				pos++; 
+			if(!isDog(animals.get(i))){
+				if(((Cat)animals.get(i)).isCanShareRun() == true){
+					result[pos] = (Cat) animals.get(i); 
+					pos++; 
+				}
 			}
+
 		}
 		
 		return result;
